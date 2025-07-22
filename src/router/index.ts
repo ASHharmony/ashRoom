@@ -10,6 +10,10 @@ const router = createRouter({
       path: '/',
       redirect: '/home',
       component: CmusicIndex,
+      meta: {
+        title: '首页',
+        isshow: true,
+      },
       children: [
         {
           path: '/home',
@@ -20,8 +24,18 @@ const router = createRouter({
     },
     {
       path: '/login',
-      name: 'login',
-      component: CmusicLogin,
+      component: CmusicIndex,
+      meta: {
+        title: '登录',
+        isshow: true,
+      },
+      children: [
+        {
+          path: '',
+          name: 'login',
+          component: CmusicLogin,
+        },
+      ],
     },
   ],
 })
