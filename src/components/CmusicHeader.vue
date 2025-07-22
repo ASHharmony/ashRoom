@@ -9,26 +9,10 @@ const router = useRouter()
 
 const routes = ref()
 
-// router.getRoutes() 方法获取所有路由
 // filter 筛选isshow为true的路由
-routes.value = router.getRoutes().filter((item) => {
-  if (item.meta.isshow == true) {
-    // 处理子路由
-    // 如果子路由长度为0 就表明没有子路由
-    if (item.children.length) {
-      // 过滤子路由
-      //console.log(item.children)
-      item.children = item.children.filter((child) => {
-        if (child.meta && !(child.meta.isshow == false)) {
-          return child
-        }
-      })
-    }
-    return item
-  }
-})
+routes.value = router.options.routes.filter((item) => item.meta && item.meta.isshow)
 
-// console.log(routes.value)
+console.log(routes.value)
 </script>
 
 <template>
@@ -39,11 +23,11 @@ routes.value = router.getRoutes().filter((item) => {
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b"
-    router="true"
+    :router="true"
   >
     <template v-for="route in routes" :key="route.path">
       <!-- 含有子菜单 -->
-      <el-sub-menu v-if="route.children.length" :index="route.path">
+      <el-sub-menu v-if="route.children.length > 1" :index="route.path">
         <template #title>
           <span>{{ route.meta.title }}</span>
         </template>
@@ -52,9 +36,6 @@ routes.value = router.getRoutes().filter((item) => {
           :index="route.path + item.path"
           :key="item.path"
         >
-          <el-icon>
-            <component :is="item.meta.icon"></component>
-          </el-icon>
           <span>{{ item.meta.title }}</span>
         </el-menu-item>
       </el-sub-menu>
@@ -67,6 +48,8 @@ routes.value = router.getRoutes().filter((item) => {
         <span>{{ route.meta.title }}</span>
       </el-menu-item>
     </template>
+
+    <el-button class="login-button" @click="$router.push('/Cuser/login')">登录</el-button>
   </el-menu>
 </template>
 
@@ -74,5 +57,13 @@ routes.value = router.getRoutes().filter((item) => {
 * {
   margin: 0px;
   padding: 0px;
+}
+
+.login-button {
+  margin-top: 20px;
+  margin-left: 200px;
+  color: #fff;
+  background-color: #409eff;
+  border-color: #409eff;
 }
 </style>
