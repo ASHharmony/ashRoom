@@ -5,7 +5,7 @@ import CmusicFooter from '@/components/CmusicFooter.vue'
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header> <CmusicHeader></CmusicHeader> </el-header>
+      <el-header style="margin: 0; padding: 0"> <CmusicHeader></CmusicHeader> </el-header>
       <el-main> <router-view></router-view> </el-main>
       <el-footer> <CmusicFooter></CmusicFooter> </el-footer>
     </el-container>
