@@ -12,6 +12,6 @@
 
 /* 设置默认背景颜色 */
 :root {
-  --el-menu-bg-color: #97dd61 !important;
+  --el-menu-bg-color: #97dd61;
 }
 </style>

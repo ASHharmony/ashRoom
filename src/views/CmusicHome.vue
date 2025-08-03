@@ -1,8 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CmusicCarousel from '@/components/CmusicCarousel.vue'
+</script>
 
 <template>
-  <div>home</div>
-  <router-link to="/login">tiaoz</router-link>
+  <div class="home-page">
+    <CmusicCarousel />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.home-page {
+  background-color: #f4fced;
+}
+</style>

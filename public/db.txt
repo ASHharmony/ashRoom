@@ -1,0 +1,26 @@
+ 1. 用户表 (user)
+   字段：用户id:userid, 用户账号:username, 用户名:nickname, 密码:password, 头像:avatar, 注册时间:register_time,个性签名:description
+
+ 2. 歌手表 (singer)
+   字段：歌手id:singerid, 歌手名:singername, 歌手照片:singerphoto, 描述:description
+
+ 3. 专辑表 (album)
+   字段：专辑id:albumid, 专辑名:albumname, 专辑封面:albumimg, 发行日期:release_time, 描述:description
+
+ 4. 歌曲表 (song)
+   字段：歌曲id:songid, 歌曲名:songname, 歌曲路径:songurl, 歌曲封面:songimg, 时长:duration, 歌词:lyric, 专辑id:albumid
+
+ 5. 歌单表 (playlist)
+   字段：歌单id:playlistid, 歌单名:playlistname, 用户id:userid, 创建时间:create_time, 歌单封面:coverimg, 描述:description
+
+ 6. 歌单歌曲关系表 (playlist_song)
+   字段：id, playlistid, songid
+
+ 7. 专辑歌手关系表 (album_singer)
+   字段：id, albumid, singerid
+
+ 8. 歌曲歌手关系表 (song_singer)
+   字段：id, songid, singerid
+
+ 9.收藏表 (user_favorite)
+   字段: 收藏id:fav_id, 用户id:userid, 收藏类型:item_type, 收藏内容id: item_id 

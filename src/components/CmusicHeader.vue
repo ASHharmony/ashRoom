@@ -75,6 +75,7 @@ console.log(routes.value)
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: none;
 }
 
 /* 未选择菜单样式 */
@@ -110,6 +111,7 @@ console.log(routes.value)
   color: #f8fff8 !important;
   text-shadow: 0 1px 2px rgba(60, 88, 39, 0.5); /* 深绿色阴影增强对比 */
   font-weight: 700;
+  transition: all 0.6s ease; /* 添加过渡效果 */
 }
 
 /* 强制设置有子菜单按钮宽度和高度 */

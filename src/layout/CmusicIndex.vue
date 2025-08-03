@@ -5,9 +5,13 @@ import CmusicFooter from '@/components/CmusicFooter.vue'
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header style="margin: 0; padding: 0"> <CmusicHeader></CmusicHeader> </el-header>
-      <el-main> <router-view></router-view> </el-main>
-      <el-footer> <CmusicFooter></CmusicFooter> </el-footer>
+      <el-header class="CmusicHeader">
+        <CmusicHeader></CmusicHeader>
+      </el-header>
+      <el-main class="CmusicMain"><router-view></router-view></el-main>
+      <el-footer class="CmusicFooter">
+        <CmusicFooter></CmusicFooter>
+      </el-footer>
     </el-container>
   </div>
 </template>
@@ -15,5 +19,22 @@ import CmusicFooter from '@/components/CmusicFooter.vue'
 * {
   margin: 0;
   padding: 0;
+}
+.CmusicHeader {
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+.CmusicMain {
+  background-color: #f8fff8;
+  width: 100%;
+  min-height: 600px;
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;
+}
+.CmusicFooter {
+  background-color: #f8fff8;
+  min-height: 100px;
 }
 </style>

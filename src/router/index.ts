@@ -6,6 +6,7 @@ import CmusicRadar from '@/views/CmusicRadar.vue'
 import MySinger from '@/views/MyCmusic/MySinger.vue'
 import MySongList from '@/views/MyCmusic/MySonglist.vue'
 import CmusicRegister from '@/views/CmusicRegister.vue'
+import MyInfo from '@/views/MyCmusic/MyInfo.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -69,6 +70,15 @@ const router = createRouter({
           component: MySongList,
           meta: {
             title: '我的歌单',
+            isshow: false,
+          },
+        },
+        {
+          path: 'myinfo',
+          name: 'myinfo',
+          component: MyInfo,
+          meta: {
+            title: '我的信息',
             isshow: false,
           },
         },
