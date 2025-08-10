@@ -11,26 +11,57 @@ import router from '@/router'
 
 // 定义表单数据类型
 interface RuleForm {
+  email: string
   username: string
+  nickname: string
   password: string
+  repassword: string
 }
 
 // 实例化
 const form = reactive<RuleForm>({
+  email: '',
   username: '',
+  nickname: '',
   password: '',
+  repassword: '',
 })
-
-// 引入图标
-import { User, Key } from '@element-plus/icons-vue'
 
 // 定义表单验证规则
 const rules = reactive<FormRules<RuleForm>>({
+  email: [
+    { required: true, message: '请输入邮箱', trigger: 'blur' },
+    {
+      validator: (rule, value, callback) => {
+        const emailrule = /[\w]+(\.[\w]+)*@[\w]+(\.[\w])+/
+        if (!emailrule.test(value)) {
+          return new Error('邮箱格式错误')
+        } else {
+          callback()
+        }
+      },
+      trigger: 'blur',
+    },
+  ],
   username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+  nickname: [{ required: true, message: '请输入昵称', trigger: 'blur' }],
   password: [
     {
       required: true,
       message: '请输入密码',
+      trigger: 'blur',
+    },
+  ],
+  repassword: [
+    { required: true, message: '请再次输入密码', trigger: 'blur' },
+    {
+      validator: (rule, value, callback) => {
+        if (value != form.password) {
+          return new Error('两次输入密码不一致')
+        } else {
+          callback()
+        }
+      },
       trigger: 'blur',
     },
   ],
@@ -39,29 +70,23 @@ const rules = reactive<FormRules<RuleForm>>({
 // 提交表单 异步
 const submitForm = async (formEl: RuleForm | undefined) => {
   if (!formEl) {
-    ElMessage.error('登录失败，请检查账号和密码')
+    ElMessage.error('注册失败，请检测输入内容')
   } else {
     try {
-      const response = await http.post('/login', formEl)
-      if (response.data.status === 200) {
+      const response = await http.post('/register', formEl)
+      if (response.data.status === 201) {
         // 弹窗
-        ElMessage.success(`亲爱的${formEl.username},欢迎回家`)
+        ElMessage.success('注册成功，即将跳转至登录界面')
         // 跳转
         setTimeout(() => {
-          router.push('/home')
-        })
+          router.push('/Cuser/login')
+        }, 1000)
       } else {
-        ElMessage.error(`登录失败:${response.data.message}`)
-        // 清空表单
-        form.username = ''
-        form.password = ''
+        ElMessage.error(`注册失败:${response.data.message}`)
       }
     } catch (error) {
       // 断言
       ElMessage.error((error as Error).message)
-      // 清空表单
-      form.username = ''
-      form.password = ''
     }
   }
 }
@@ -70,15 +95,27 @@ const submitForm = async (formEl: RuleForm | undefined) => {
 <template>
   <div class="login-page">
     <div class="left-container">
-      <img class="left-image" src="../../public/window.png" alt="" />
+      <img class="left-image" src="../../public/flower.png" alt="" />
     </div>
     <div class="form-container">
       <el-form :rules="rules" :model="form">
+        <el-form-item class="inp-container" prop="email">
+          <el-icon class="inp-icon">
+            <Message />
+          </el-icon>
+          <el-input v-model="form.email" type="text" placeholder="请输入邮箱" class="inp" />
+        </el-form-item>
         <el-form-item class="inp-container" prop="username">
           <el-icon class="inp-icon">
             <User />
           </el-icon>
           <el-input v-model="form.username" type="text" placeholder="请输入账号" class="inp" />
+        </el-form-item>
+        <el-form-item class="inp-container" prop="nickname">
+          <el-icon class="inp-icon">
+            <Service />
+          </el-icon>
+          <el-input v-model="form.nickname" type="text" placeholder="请输入昵称" class="inp" />
         </el-form-item>
         <el-form-item class="inp-container" prop="password">
           <el-icon class="inp-icon">
@@ -93,15 +130,20 @@ const submitForm = async (formEl: RuleForm | undefined) => {
             show-password
           />
         </el-form-item>
+        <el-form-item class="inp-container" prop="repassword">
+          <el-icon class="inp-icon">
+            <Refresh />
+          </el-icon>
+          <el-input
+            v-model="form.repassword"
+            type="password"
+            autocomplete="off"
+            placeholder="请确认密码"
+            class="inp"
+          />
+        </el-form-item>
         <el-form-item>
-          <el-button color="#5fbf60" class="login-btn" plain @click="submitForm(form)"
-            >登录</el-button
-          >
-          <el-button
-            color="#5fbf60"
-            class="login-btn"
-            plain
-            @click="$router.push('/Cuser/register')"
+          <el-button color="#5fbf60" class="reg-btn" plain @click="submitForm(form)"
             >注册</el-button
           >
         </el-form-item>
@@ -156,7 +198,7 @@ const submitForm = async (formEl: RuleForm | undefined) => {
 
 /* 表单容器样式 */
 .inp-container {
-  width: 250px;
+  width: 300px;
   height: 50px;
   /* border: 1px solid #000000; */
   border-radius: 50px;
@@ -164,7 +206,7 @@ const submitForm = async (formEl: RuleForm | undefined) => {
   box-shadow:
     5px 5px 32px #65cc67,
     -5px -5px 32px #6ddc6f;
-  margin-top: 30px;
+  margin-top: 25px;
   margin-left: 50px;
 }
 
@@ -178,7 +220,7 @@ const submitForm = async (formEl: RuleForm | undefined) => {
 
 /* 表单样式 */
 .inp {
-  /* margin-left: 10px; */
+  margin-left: 10px;
   width: 180px;
 }
 
@@ -227,12 +269,13 @@ const submitForm = async (formEl: RuleForm | undefined) => {
   margin-left: 60px;
 }
 
-.login-btn {
-  width: 100px;
-  height: 30px;
+/* 注册按钮样式 */
+.reg-btn {
+  width: 150px;
+  height: 40px;
   border-radius: 50px;
-  margin-top: 30px;
-  margin-left: 50px;
+  margin-top: 10px;
+  margin-left: 120px;
   font-weight: 600;
 }
 </style>

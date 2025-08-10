@@ -13,6 +13,5 @@ const http = axios.create({
 //   // 请求发送前的处理
 //   const userStore = useUserStore()
 // })
-// If you intend to use this in a Node.js/Express environment, import the types:
 
 export default http

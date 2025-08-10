@@ -4,7 +4,7 @@ import CmusicFooter from '@/components/CmusicFooter.vue'
 </script>
 <template>
   <div class="common-layout">
-    <el-container>
+    <el-container style="background-color: #97dd61">
       <el-header class="CmusicHeader">
         <CmusicHeader></CmusicHeader>
       </el-header>
@@ -32,6 +32,7 @@ import CmusicFooter from '@/components/CmusicFooter.vue'
   margin: 0;
   margin-top: 10px;
   padding: 0;
+  border-radius: 30px 30px 0 0;
 }
 .CmusicFooter {
   background-color: #f8fff8;

@@ -9,6 +9,10 @@ import { ElMessage } from 'element-plus'
 import http from '@/utils/request'
 import router from '@/router'
 
+import { useUserStore } from '@/stores/useUserStore'
+
+const userStore = useUserStore()
+
 // 定义表单数据类型
 interface RuleForm {
   username: string
@@ -22,7 +26,7 @@ const form = reactive<RuleForm>({
 })
 
 // 引入图标
-import { User, Key } from '@element-plus/icons-vue'
+// import { User, Key } from '@element-plus/icons-vue'
 
 // 定义表单验证规则
 const rules = reactive<FormRules<RuleForm>>({
@@ -45,11 +49,17 @@ const submitForm = async (formEl: RuleForm | undefined) => {
       const response = await http.post('/login', formEl)
       if (response.data.status === 200) {
         // 弹窗
-        ElMessage.success(`亲爱的${formEl.username},欢迎回家`)
+        ElMessage.success(`亲爱的${response.data.user.nickname},欢迎回家`)
+        // 存储用户信息
+        userStore.setUserInfo({
+          id: response.data.user.id,
+          nickname: response.data.user.nickname,
+          avatar: response.data.user.avatar,
+        })
         // 跳转
         setTimeout(() => {
           router.push('/home')
-        })
+        }, 1000)
       } else {
         ElMessage.error(`登录失败:${response.data.message}`)
         // 清空表单
