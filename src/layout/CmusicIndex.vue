@@ -26,13 +26,13 @@ import CmusicFooter from '@/components/CmusicFooter.vue'
   padding: 0;
 }
 .CmusicMain {
-  background-color: #f8fff8;
+  background-color: #f4fced;
   width: 100%;
   min-height: 600px;
   margin: 0;
   margin-top: 10px;
   padding: 0;
-  border-radius: 30px 30px 0 0;
+  /* border-radius: 30px 30px 0 0; */
 }
 .CmusicFooter {
   background-color: #f8fff8;

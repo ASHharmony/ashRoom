@@ -20,7 +20,7 @@ const nameArr = ref(['L', 'O', 'V', 'E', ' ', ' ', ' ', ' ', 'C', 'C'])
 // filter 筛选isshow为true的路由
 routes.value = router.options.routes.filter((item) => item.meta && item.meta.isshow)
 
-console.log(routes.value)
+// console.log(routes.value)
 </script>
 
 <template>

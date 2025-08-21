@@ -7,6 +7,7 @@ import MySinger from '@/views/MyCmusic/MySinger.vue'
 import MySongList from '@/views/MyCmusic/MySonglist.vue'
 import CmusicRegister from '@/views/CmusicRegister.vue'
 import MyInfo from '@/views/MyCmusic/MyInfo.vue'
+import CmusicSortPage from '@/views/CmusicSort/CmusicSortPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -103,6 +104,15 @@ const router = createRouter({
           component: CmusicRegister,
         },
       ],
+    },
+    {
+      path: '/sort',
+      name: 'sort',
+      component: CmusicSortPage,
+      meta: {
+        title: '分类',
+        isshow: false,
+      },
     },
   ],
 })
