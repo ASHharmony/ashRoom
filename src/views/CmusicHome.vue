@@ -131,6 +131,7 @@ const sortdata: sortitem[] = [
       </div>
     </div>
   </el-card> -->
+  <h1>开发中，暂无内容</h1>
 </template>
 
 <style scoped>

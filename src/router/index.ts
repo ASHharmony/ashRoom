@@ -17,7 +17,7 @@ const router = createRouter({
       redirect: '/home',
       component: CmusicIndex,
       meta: {
-        title: 'Cmusic广场',
+        title: '博客首页',
         isshow: true,
       },
       children: [
@@ -35,7 +35,7 @@ const router = createRouter({
       redirect: '/cmusicRadar/Radar',
       component: CmusicIndex,
       meta: {
-        title: 'Cmusic雷达',
+        title: '技术空间',
         isshow: true,
       },
       children: [
