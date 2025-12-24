@@ -59,7 +59,7 @@ routes.value = router.options.routes.filter((item) => item.meta && item.meta.iss
         >注册</el-button
       >
     </span> -->
-    <el-menu-item
+    <!-- <el-menu-item
       class="headbtn login-button"
       v-if="userStore.userInfo === undefined"
       :index="'/Cuser/login'"
@@ -74,8 +74,8 @@ routes.value = router.options.routes.filter((item) => item.meta && item.meta.iss
       :key="'/Cuser/register'"
     >
       <span>注册</span>
-    </el-menu-item>
-    <span v-else>
+    </el-menu-item> -->
+    <span>
       <!-- <el-button>{{ userStore.userInfo?.nickname }}</el-button>
       <el-avatar src="/public/c-headimg.jpg" /> -->
       <!-- From Uiverse.io by Creatlydev -->

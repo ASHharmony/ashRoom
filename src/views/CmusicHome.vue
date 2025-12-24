@@ -95,7 +95,7 @@ const sortdata: sortitem[] = [
   <!-- 轮播图 -->
   <CmusicCarousel />
   <!-- 分类 -->
-  <el-card class="sort-container">
+  <!-- <el-card class="sort-container">
     <template #header
       ><div class="sort-header"><div class="sort-title">音乐分类</div></div></template
     >
@@ -130,7 +130,7 @@ const sortdata: sortitem[] = [
         </el-collapse>
       </div>
     </div>
-  </el-card>
+  </el-card> -->
 </template>
 
 <style scoped>
